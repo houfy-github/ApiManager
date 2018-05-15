@@ -126,11 +126,11 @@ public class HttpPostGet {
 			method.setEntity(entity);
 		}
 		method.setConfig(requestConfig);
-		return postMethod(method, params, headers);
+		return postMethod(method, headers);
 	}
 
 
-	private static String postMethod(HttpUriRequest method, Map<String, String> params, Map<String, String> headers)
+	private static String postMethod(HttpUriRequest method, Map<String, String> headers)
 			throws Exception {
 		HttpClient client = HttpClients.createDefault();
 		method.setHeader("charset", "utf-8");
@@ -141,11 +141,10 @@ public class HttpPostGet {
 			while (iterator.hasNext()) {
 				String key = (String) iterator.next();
 				method.setHeader(key, headers.get(key));
-				method.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-				method.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63");
-
 			}
-		}
+            method.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            method.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63");
+        }
 
 		HttpResponse response = client.execute(method);
 		int status = response.getStatusLine().getStatusCode();
@@ -168,9 +167,9 @@ public class HttpPostGet {
 			while (iterator.hasNext()) {
 				String key = (String) iterator.next();
 				method.setHeader(key, headers.get(key));
-				method.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-				method.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63");
 			}
+			method.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+			method.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63");
 		}
 		HttpResponse response = client.execute(method);
 		int status = response.getStatusLine().getStatusCode();
